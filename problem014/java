@@ -1,4 +1,3 @@
-[code]
 package problem014;
 
 public class Solution {
@@ -35,4 +34,3 @@ public class Solution {
 	}
 	
 }
-[/code]

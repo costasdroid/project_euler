@@ -1,0 +1,6 @@
+d = Select[
+   Table[Boole[Total[Divisors[n]] - n > n] n, {n, 1, 28123}], # > 0 &];
+Select[DeleteDuplicates[
+   Flatten[Table[d[[n]] + d, {n, 1, Length[d]}]]], # < 
+    28123 &] // Total
+Sum[a, {a, 1, 28122}] - %

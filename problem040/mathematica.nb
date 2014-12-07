@@ -1,0 +1,2 @@
+d = Flatten[IntegerDigits[Range[200000]]]
+Times @@ Table[d[[i]], {i, Table[10^n, {n, 0, 6}]}]

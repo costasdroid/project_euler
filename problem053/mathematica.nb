@@ -1,0 +1,1 @@
+Select[Table[n!/r!/(n - r)!, {n, 1, 100}, {r, 1, n}] // Flatten, # > 10^6 &] // Length

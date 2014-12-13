@@ -12,8 +12,6 @@ public class Solution042 {
 			n++;
 		} while (n * (n + 1) / 2 <= 193);
 
-		System.out.println(triang);
-
 		int numbers = 0;
 		int temp = 0;
 		for (int i = 0; i < words.length; i++) {

@@ -1,0 +1,2 @@
+Total[Table[a^b, {a, 1, 100}, {b, 1, 100}] // Flatten // 
+   IntegerDigits, {2}] // Max

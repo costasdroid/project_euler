@@ -1,0 +1,5 @@
+t = Select[
+   Table[{Sort[IntegerDigits[n]] == 
+      Sort[IntegerDigits[k = EulerPhi[n]]], n, n/k}, {n, 2, 
+     9999999}], #[[1]] == True &];
+     MinimalBy[t, Last][[1, 2]]

@@ -1,0 +1,1 @@
+Reduce[2 n*(n - 1) == k*(k - 1) && 0 < n < 10^12 < k, n, Integers]

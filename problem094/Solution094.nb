@@ -1,0 +1,7 @@
+Reduce[z == x*y && x^2/4 + y^2 == (x - 1)^2 && 3 x - 2 < 1000000000 &&
+    x > 0 && y > 0, {x, y, z}, Integers];
+3 x - 2 /. {ToRules[%]};
+Reduce[z == x*y && x^2/4 + y^2 == (x + 1)^2 && 3 x + 2 < 1000000000 &&
+    x > 0 && y > 0, {x, y, z}, Integers];
+3 x + 2 /. {ToRules[%]};
+(% // Total) + (%%% // Total)

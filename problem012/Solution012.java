@@ -3,7 +3,7 @@ package problem012;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class Solution012 {
 
 	static List<Long> list;
 	static List<Long> ocs;

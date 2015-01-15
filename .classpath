@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="problem050/|problem047/|problem036/|problem032/|problem046/|problem042/|problem035/|problem052/|problem049/|problem045/|problem041/|problem038/|problem027/|problem051/|problem048/|problem037/|problem026/|problem011/|problem008/" kind="src" path=""/>
+	<classpathentry kind="src" path="problem008"/>
+	<classpathentry kind="src" path="problem011"/>
+	<classpathentry kind="src" path="problem026"/>
+	<classpathentry kind="src" path="problem027"/>
+	<classpathentry kind="src" path="problem032"/>
+	<classpathentry kind="src" path="problem035"/>
+	<classpathentry kind="src" path="problem036"/>
+	<classpathentry kind="src" path="problem037"/>
+	<classpathentry kind="src" path="problem038"/>
+	<classpathentry kind="src" path="problem041"/>
+	<classpathentry kind="src" path="problem042"/>
+	<classpathentry kind="src" path="problem045"/>
+	<classpathentry kind="src" path="problem046"/>
+	<classpathentry kind="src" path="problem047"/>
+	<classpathentry kind="src" path="problem048"/>
+	<classpathentry kind="src" path="problem049"/>
+	<classpathentry kind="src" path="problem050"/>
+	<classpathentry kind="src" path="problem051"/>
+	<classpathentry kind="src" path="problem052"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

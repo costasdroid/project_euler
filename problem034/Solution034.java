@@ -1,3 +1,5 @@
+package problem034;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +10,6 @@ public class Solution034 {
 	public static void main(String[] args) {
 
 		int digits = 6;
-
-		int number = 1;
 
 		int sum = 0;
 

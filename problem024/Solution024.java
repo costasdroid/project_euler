@@ -1,3 +1,5 @@
+package problem024;
+
 /*
  *  This algorithm runs through all permutations of a given set with a lexicographic order
  *  1. From right to left find the first number not in ascending order

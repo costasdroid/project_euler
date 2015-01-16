@@ -1,9 +1,10 @@
+package problem015;
 //Recursive. From every cell, we can go either right (with the right's cell paths)
 //	or down (with the under's cell paths), so we must add them. We begin by setting
 //	all right and under cells with 1 (only one path) and from bottom to top we pass
 //	through all cells
 
-public class Solution {
+public class Solution015 {
 	
 	static final int N = 40;
 	

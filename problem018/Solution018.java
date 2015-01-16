@@ -1,4 +1,6 @@
-public class Solution {
+package problem018;
+
+public class Solution018 {
 
 	public static void main(String[] args) {
 		String tree = "75\n" 

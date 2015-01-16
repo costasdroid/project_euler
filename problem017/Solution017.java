@@ -1,4 +1,6 @@
-public class Solution {
+package problem017;
+
+public class Solution017 {
 
 	static String[] units = { "one", "two", "three", "four", "five", "six",
 			"seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",

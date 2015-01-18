@@ -1,5 +1,3 @@
-//the answer is not 1256 so some modifications needed maybe in parenthesis
-
 package problem093;
 
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ public class Solution093 {
 
 		// create all combinations from 1..9
 		selectFrom("", "123456789");
-		//System.out.println(fours);
+		// System.out.println(fours);
 
 		// for every number in previous combination
 		for (int i = 0; i < fours.size(); i++) {
@@ -38,11 +36,11 @@ public class Solution093 {
 
 			// create every permutation from the fours
 			permute("", fours.get(i) + "");
-			//System.out.println(number);
+			// System.out.println(number);
 
 			// get all different results
 			for (int num : number)
-				operationsOn(num / 10 + "", num % 10);
+				operationsOn(num);
 
 			// count ones from the result array
 			for (int n = 1; n < results.length; n++) {
@@ -69,8 +67,9 @@ public class Solution093 {
 		}
 		for (int i = 0; i < remain.length(); i++) {
 			String stringToProceed = created + remain.charAt(i);
+			// create only ascending numbers
 			String stringRemained = remain.substring(i + 1, remain.length());
-				selectFrom(stringToProceed, stringRemained);
+			selectFrom(stringToProceed, stringRemained);
 		}
 	}
 
@@ -87,24 +86,46 @@ public class Solution093 {
 		}
 	}
 
-	static void operationsOn(String s, double res) {
-		// if no string remains and the result is proper fill the array
-		if (s.length() == 0) {
-			if (res >= 0 && res == (int) res) {
-				results[(int) res] = 1;;
+	static void operationsOn(int n) {
+		//there are only two possibilities
+		// 1. ((a#b)#c)#d
+		// 2. (a#b)#(c#d) 
+		ArrayList<Character> c = new ArrayList<Character>();
+		c.add('+');
+		c.add('-');
+		c.add('*');
+		c.add('/');
+		int u1 = n % 10;
+		n /= 10;
+		int u2 = n % 10;
+		n /= 10;
+		int u3 = n % 10;
+		int u4 = n / 10;
+		for (char o1 : c) {
+			for (char o2 : c) {
+				for (char o3 : c) {
+					Double res = op(op(op(u1, u2, o1), u3, o2), u4, o3);
+					if (res > 0 && res.intValue() == res)
+						results[res.intValue()] = 1;
+					res = op(op(u1, u2, o1), op(u3, u4, o2), o3);
+					if (res > 0 && res.intValue() == res)
+						results[res.intValue()] = 1;
+				}
 			}
-			return;
 		}
-
-		// continue with the respective operation
-		operationsOn(s.substring(0, s.length() - 1),
-				res + Integer.valueOf(s.charAt(s.length() - 1) + ""));
-		operationsOn(s.substring(0, s.length() - 1),
-				res - Integer.valueOf(s.charAt(s.length() - 1) + ""));
-		operationsOn(s.substring(0, s.length() - 1),
-				res * Integer.valueOf(s.charAt(s.length() - 1) + ""));
-		operationsOn(s.substring(0, s.length() - 1),
-				res / Integer.valueOf(s.charAt(s.length() - 1) + ""));
 	}
 
+	static double op(double x, double y, char c) {
+		switch (c) {
+		case '+':
+			return x + y;
+		case '-':
+			return x - y;
+		case '*':
+			return x * y;
+		case '/':
+			return x / y;
+		}
+		return 0;
+	}
 }

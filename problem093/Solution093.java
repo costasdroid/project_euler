@@ -96,7 +96,6 @@ public class Solution093 {
 			return;
 		}
 
-		//testing merge
 		// continue with the respective operation
 		operationsOn(s.substring(0, s.length() - 1),
 				res + Integer.valueOf(s.charAt(s.length() - 1) + ""));

@@ -5,7 +5,7 @@ public class Solution105 {
 	public static void main(String[] args) {
 
 		long t = System.currentTimeMillis();
-		
+
 		String[] set = data.split("\n");
 
 		int sol = 0;
@@ -15,7 +15,7 @@ public class Solution105 {
 				sol += temp.sum;
 			}
 		}
-		
+
 		System.out.println("Took: " + (System.currentTimeMillis() - t) + "ms");
 		System.out.println("Answer: " + sol);
 	}

@@ -20,7 +20,7 @@ public class Solution109 {
 		darts.add(25);
 
 		for (target = 2; target <= max; target++) {
-			int temp = counts;
+			//int temp = counts;
 			checkout(darts, 0, 0, "", "S", 0);
 			//System.out.println("For " + target + " we need " + (counts - temp));
 		}

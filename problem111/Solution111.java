@@ -96,7 +96,7 @@ public class Solution111 {
 			if (isPrime(n) && temp[0] != '0') {
 				s += n;
 				ms[num.charAt(0) - '0'] = true;
-				System.out.println(n);
+				//System.out.println(n);
 			}
 		}
 	}

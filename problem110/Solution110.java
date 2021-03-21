@@ -1,88 +1,37 @@
-package problem110;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Solution110 {
 
-	static final long TARGET = 4000000;
-
-	static ArrayList<Integer> primes;
-	static ArrayList<Integer> pow;
-
-	static ArrayList<Integer> best;
-	static long minimum;
-
-	// keep removing until smallest reached
-	static boolean loop = true;
+	static int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 37};
+	static int[] times = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	static long minimum = 614889782588491410l;
+	final static int N = 4000000;
 
 	public static void main(String[] args) {
+		long t1 = System.currentTimeMillis();
+		least(1, 0);
+		System.out.println("The solution is: " + minimum);
+		System.out.println("Took: " + (System.currentTimeMillis() - t1) + "ms");
+	}
 
-		// We know that the solution is the number of the dividers of n^2
-
-		// Also if a=p1^a1*p2^a2*... ans=((2a1+1)(2a2+1)...+1)/2
-
-		// We need a maximum number, which is 2*3*4*... so that
-		// (2*1+1)(2*1+1)...>7999999=> 3^n>7999999 => n>14
-
-		primes = new ArrayList<Integer>();
-
-		// needed at most primes
-		int n = (int) (Math.log(TARGET * 2 - 1) / Math.log(3)) + 1;
-
-		// set minimum
-		minimum = (long) Math.pow(3, n);
-
-		// find that primes
-		int found = 1;
-		primes.add(2);
-		int number = 3;
-		while (found < n) {
-			if (isPrime(number)) {
-				found++;
-				primes.add(number);
+	private static void least(long n, int p) {
+		int exp = 1;
+		for (int i = 0; i < times.length && times[i] > 0; i++) {
+			exp = exp * (2 * times[i] + 1);
+		}
+		if (n < minimum && n > 0) {
+			if (exp > 2 * N - 1) {
+				if(n < minimum) minimum = n;
+				//System.out.println((exp + 1) / 2);
+			} else {
+				for (int i = p; i < primes.length; i++) {
+					if (i > 0 && (times[i - 1] <= times[i])) continue;
+					times[i]++;
+					least(n * primes[i], i);
+					times[i]--;
+				}
 			}
-			number += 2;
 		}
-
-		// powers of primes
-		pow = new ArrayList<Integer>();
-		for (int i : primes) {
-			pow.add(1);
-		}
-
-		findBestPows(primes, 0, 1);
-
-		System.out.println(pow);
+		return;
 	}
-
-	static boolean isPrime(int n) {
-		if (n <= 1)
-			return false;
-		else if (n <= 3)
-			return true;
-		else if (n % 3 == 0 || n % 2 == 0)
-			return false;
-		int i = 5;
-		while (i * i <= n) {
-			if (n % i == 0 || n % (i + 2) == 0)
-				return false;
-			i += 6;
-		}
-		return true;
-	}
-
-	static void findBestPows(ArrayList<Integer> primes, int pos, int prod) {
-		if (pos >= primes.size()) return;
-
-		System.out.println("Inside pos = " + pos);		
-		for (int i =0; prod < 2 * TARGET - 1; i++) {
-			System.out.println("Prime at " + pos + " on power " + i);
-			findBestPows(primes, pos - 1, prod * (2*i + 1));
-		}
-		if (prod > 2 * TARGET - 1 && prod < minimum) {
-			System.out.println(minimum + " at " + pow);
-		}
-		
-	}
-
 }

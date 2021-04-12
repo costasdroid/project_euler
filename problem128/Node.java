@@ -1,7 +1,10 @@
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
+
 public class Node {
 
+
   static int pos = 0;
-  static final Primes primes = new Primes(1000);
 
   // row nodes of each new row
   static int row = 0;
@@ -15,13 +18,17 @@ public class Node {
   static int threes = 0;
 
   // node id - value
-  public int id = 1;
+  public long id = 1l;
 
   // define neighbours to 6 directions
   public Node[] neighbour = new Node[6];
 
   // next node of this one
   public Node next;
+  public Node previous;
+
+  // has 3 primes
+  public boolean h3 = false;
 
   public Node() {
     nextRow();
@@ -30,14 +37,17 @@ public class Node {
     current = lastNode;
 
     do {
+      // System.out.println();
+      // System.out.println("(" + current.id + ")");
       fill(current);
-      printNeighbours(current);
+      // printNeighbours(current);
       current = current.next;
-    } while (threes <= 10);
+    } while (threes < 100);
+    System.out.println(threes);
   }
 
   // node creation
-  public Node(int id) {
+  public Node(long id) {
     for (int i = 0; i < 6; i++) {
       this.neighbour[i] = null;
     }
@@ -54,17 +64,19 @@ public class Node {
       int i = (j + pos + 6) % 6;
       Node temp;
       if (n.neighbour[i] == null) {
-        // System.out.println(pos + "Δημιουργία κόμβου " + (lastNode.id + 1));
-        temp = new Node(lastNode.id + 1);
+        // System.out.print(" +" + (lastNode.id + 1) + "@" + i);
+        temp = new Node(lastNode.id + 1l);
 
         // Keep track of node succession
         // System.out.println("Υπάρχει επόμενος του " + n.id + "?");
         if (n.next == null) {
           // System.out.println("Όχι, κάνε επόμενο του τον " + temp.id);
           n.next = temp;
+          temp.previous = n;
         } else {
           // System.out.println("Ναι o " + n.next.id + ", κάνε επόμενο του " + lastNode.id + " τον " + temp.id);
           lastNode.next = temp;
+          temp.previous = lastNode;
         }
 
         // System.out.println(" (" + i + ") -> " + temp.id);
@@ -85,11 +97,16 @@ public class Node {
         lastNode = temp;
 
         if (temp.id == rowLast) {
-          // System.out.println("I Should check primes");
-
           temp.neighbour[2].neighbour[0].neighbour[4] = temp;
           temp.neighbour[1] = temp.neighbour[2].neighbour[0];
-          if (temp.id > 1) check(temp.neighbour[2], n);
+          if (temp.id > 1) {
+            // System.out.println();
+            // System.out.println("--------------");
+            checkRow(temp.neighbour[2], n);
+            //if (temp.id > 18) deleteRow(n.neighbour[3]);
+            // System.out.println();
+            // System.out.println("--------------");
+          }
           nextRow();
           pos = 0;
           return;
@@ -102,10 +119,12 @@ public class Node {
     }
   }
 
-  static void check(Node n, Node m) {
+  static void checkRow(Node n, Node m) {
     if (n.id > m.id) return;
     checkNode(n);
-    check(n.next, m);
+    // System.out.print(", " + n.id + "-" + threes);
+    // printNeighbours(n);
+    checkRow(n.next, m);
   }
 
   static void nextRow() {
@@ -114,6 +133,18 @@ public class Node {
 
     // System.out.println("Σειρά: " + row);
     // System.out.println("Τελευταίος: " + rowLast);
+  }
+
+  static void deleteRow(Node n) {
+    Node temp = n;
+    Node temp2;
+    do {
+      temp = temp.previous;
+      if (temp == null) break;
+      temp.next = new Node(1);
+      temp2 = temp.next;
+      temp2.previous = new Node(1);
+    } while(true);
   }
 
   static void checkNode(Node n) {
@@ -126,20 +157,23 @@ public class Node {
     for (int i = 0; i < 6; i++) {
       // System.out.print("(" + i + ")");
       // if (n.neighbour[i] != null) System.out.print(n.neighbour[i].id + ", ");
-      if (primes.primesArray[Math.abs(n.id - n.neighbour[i].id )]) total++;
+      if (isPrime(Math.abs(n.id - n.neighbour[i].id))) total++;
     }
     if (total == 3) {
       threes++;
+      n.h3 = true;
+      printNeighbours(n);
     }
-    System.out.println(total);
+    // System.out.println(total);
     // System.out.println("****************************");
     // System.out.println();
   }
 
   static void printNeighbours(Node n) {
+
     System.out.println();
     System.out.println("****************************");
-    System.out.print("O Κομβος " + n.id + " ");
+    System.out.println(threes + "- O Κομβος " + n.id + " " + n.h3);
 
     int total = 0;
 
@@ -150,6 +184,22 @@ public class Node {
     System.out.println();
     System.out.println("****************************");
     System.out.println();
+  }
+
+  static boolean isPrime(long n) {
+    if (n <= 1)
+      return false;
+    else if (n <= 3)
+      return true;
+    else if (n % 3 == 0 || n % 2 == 0)
+      return false;
+    long i = 5;
+    while (i * i <= n) {
+      if (n % i == 0 || n % (i + 2) == 0)
+        return false;
+      i += 6;
+    }
+    return true;
   }
 
 }

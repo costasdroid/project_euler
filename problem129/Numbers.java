@@ -1,5 +1,3 @@
-package helperPackage;
-
 public class Numbers {
 
 //test for primality

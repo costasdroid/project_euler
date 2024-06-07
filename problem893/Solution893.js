@@ -1,4 +1,4 @@
-const N = 1000;
+const N = 100;
 sticks = [];
 given = [6, 2, 5, 5, 4, 5, 6, 3, 7, 6];
 
@@ -7,6 +7,7 @@ class MNum {
   num;
   expr;
   hasAddition;
+  withAddition;
   constructor(num) {
     this.num = num;
     this.st = (this.num + "")
@@ -21,13 +22,14 @@ class MNum {
     this.searchForMultiplication();
     this.searchForAddition();
   }
+  // 26688208
 
   searchForMultiplication = function () {
     for (let i = 2; i <= Math.sqrt(this.num); i++) {
-      if (this.num % i == 0 && !sticks[i].hasAddition) {
+      if (this.num % i == 0) {
         var temp = sticks[this.num / i].st + sticks[i].st + 2;
         if (this.st > temp) {
-          this.expr = sticks[i].expr + "x" + sticks[this.num / i].expr;
+          this.expr = sticks[i].expr + "*" + sticks[this.num / i].expr;
           this.st = temp;
           return;
         }
@@ -37,12 +39,15 @@ class MNum {
 
   searchForAddition = function () {
     for (let i = 1; i <= this.num; i++) {
-      var temp = sticks[this.num - i].st + sticks[i].st + 2;
-      if (this.st > temp) {
+      var temp =
+        (sticks[this.num - i].withAddition || sticks[this.num - i].st) +
+        (sticks[i].withAddition || sticks[i].st) +
+        2;
+      if ((this.withAddition || this.st) > temp) {
         this.expr = sticks[i].expr + "+" + sticks[this.num - i].expr;
-        this.st = temp;
+        this.withAddition = temp;
         this.hasAddition = true;
-        console.log(this.getExpr());
+        // console.log(this.getExpr());
         return;
       }
     }
@@ -57,7 +62,11 @@ for (let i = 0; i <= N; i++) {
   new MNum(i);
 }
 
+sticks.forEach((s) => {
+  console.log(s.getExpr());
+  // s.hasAddition ? console.log(s.getExpr()) : "";
+});
 // sticks.forEach((s) => {
-//   s.hasAddition ? console.log(s.getExpr()) : "";
+//   eval(s.expr) !== s.num ? console.log(s.getExpr()) : "";
 // });
 console.log(sticks.reduce((a, b) => a + b.st, 0) - 6);

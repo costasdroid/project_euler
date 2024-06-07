@@ -2,6 +2,8 @@ const N = 1000;
 sticks = [];
 given = [6, 2, 5, 5, 4, 5, 6, 3, 7, 6];
 
+// aoisfjioasjf ioasj foiajs oifjasoi jfoiasjf oias
+
 class MNum {
   st;
   num;

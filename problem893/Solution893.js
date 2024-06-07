@@ -8,6 +8,7 @@ class MNum {
   expr;
   hasAddition;
   withAddition;
+
   constructor(num) {
     this.num = num;
     this.st = (this.num + "")
@@ -18,7 +19,6 @@ class MNum {
       );
     this.expr = this.num + "";
     sticks.push(this);
-    if (num < 10) return;
     this.searchForMultiplication();
     this.searchForAddition();
   }

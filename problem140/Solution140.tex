@@ -1,0 +1,66 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{listings,xcolor}
+
+\lstset{language=Mathematica}
+
+\begin{document}
+
+\begin{align*}
+    A_G(x)                   & =\sum_{i=1}^{n}a_ix^i                                                      \\
+    A_G(x)                   & =a_1x+a_2x^2+\sum_{i=3}^{n}a_ix^i                                          \\
+    A_G(x)                   & =a_1x+a_2x^2+\sum_{i=3}^{n}(a_{i-1}+a_{i-2})x^i                            \\
+    A_G(x)                   & =a_1x+a_2x^2+\sum_{i=3}^{n}a_{i-1}x^i+\sum_{i=3}^{n}a_{i-2}x^i             \\
+    A_G(x)                   & =a_1x+a_2x^2+x\sum_{i=3}^{n}a_{i-1}x^{i-1}+x^2\sum_{i=3}^{n}a_{i-2}x^{i-2} \\
+    A_G(x)                   & =a_1x+a_2x^2+x \left( A_G(x)-a_1x \right) +x^2A_G(x)                       \\
+    A_G(x)-xA_G(x)-x^2A_G(x) & =a_1x+(a_2-a_1)x^2                                                         \\
+    A_G(x)(1-x-x^2)          & =a_1x+(a_2-a_1)x^2                                                         \\
+    A_G(x)                   & =\frac{a_1x+(a_2-a_1)x^2 }{1-x-x^2}                                        \\
+\end{align*}
+
+Given that the values of $f$ must be natural, we solve for $x$
+
+\begin{align*}
+    k-kx-kx^2                 & =a_1x+(a_2-a_1)x^2 \\
+    (a_2-a_1+k)x^2+(a_1+k)x+k & =0
+\end{align*}
+
+For the given sequence $a_1=1$ and $a_2=4$, so
+
+\begin{align*}
+    (3+k)x^2+(1+k)x-k & =0
+\end{align*}
+
+The discriminant of the quadratic equation is
+
+\begin{align*}
+    \Delta & =b^2-4ac           \\
+           & =(1+k)^2+4(3+k)(k) \\
+           & =k^2+2k+1+12k+4k^2 \\
+           & =5k^2+14k+1
+\end{align*}
+
+It must be a square of a natural number, so
+
+\begin{align*}
+    5k^2+14k+1   & =m^2        \\
+    25k^2+70k+5  & =5m^2       \\
+    25k^2+70k+49 & =5m^2+44    \\
+    (5k+7)^2     & =5m^2+44    \\
+    k(5k+14)     & =(m-1)(m+1)
+\end{align*}
+
+Mathematica code to find the sum of the first 30 values of $k$
+
+\begin{lstlisting}[language=Mathematica]
+    Solve[5 k^2 + 14 k + 1 == m^2 && k > 0 && m > 0, Integers];
+    Sort[Flatten[Table[k /. % /. { C[1] -> a}, {a, 0, 10}] // FullSimplify]][[1 ;; 30]]
+    % // Total
+\end{lstlisting}
+
+
+
+
+\end{document}

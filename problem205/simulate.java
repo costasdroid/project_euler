@@ -1,3 +1,5 @@
+package problem205;
+
 import java.util.Random;
 
 

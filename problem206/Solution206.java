@@ -1,3 +1,5 @@
+package problem206;
+
 public class Solution206 {
 
 	static long sol;

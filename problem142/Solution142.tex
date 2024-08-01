@@ -1,0 +1,30 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{listings,xcolor}
+
+\begin{document}
+
+From the list $x+y=m^2$, $x-y=k^2$, $x+z=l^2$, $x-z$, $y+z$ and $y-z$ we have $m>l>k$ because
+
+$$x+y>x+z \implies m>l$$
+
+and
+
+$$x+z>x-y\implies l>k$$
+
+Solving for $x$, $y$ and $z$ we have
+
+$$x=\frac{k^2 + m^2}{2}, y=\frac{-k^2 + m^2}{2},z= \frac{-k^2 + 2 l^2 - m^2}{2}$$
+
+
+so
+
+$$x-z=k^2 - l^2 + m^2, y+z=-k^2 + l^2, y-z=-l^2 + m^2$$
+
+This means we iterate for all $l>k$ and $l<m<\sqrt{2 l^2-k^2}$.
+
+To speed things up, we cache a matrix of squares.
+
+\end{document}

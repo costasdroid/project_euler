@@ -1,0 +1,55 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{listings,xcolor}
+
+\lstset{language=Mathematica}
+
+\begin{document}
+
+According to Heron the area of a triangle with sides $a$,$b$,$c$ is
+
+\begin{align*}
+    E=\sqrt{s(s-a)(s-b)(s-c)}
+\end{align*}
+
+For circles $C_0-C_1-C_8$ the area of the triangle $K_0K_1K_8$ is according to Heron
+
+\begin{align*}
+    s & =\frac{1}{2} \left( r_0+r_1+r_1+r_8+r_8+r_0 \right) \\
+    s & =r_0+r_1+r_8                                        \\
+    E & =\sqrt{r_0r_1r_8(r_0+r_1+r_8)}
+\end{align*}
+
+with $r_k=d^k\cdot r_0$ and $r_0$=1
+
+\begin{align*}
+    E & =\sqrt{d^9(1+d+d^8)} \\
+    E & =d^4\sqrt{d+d^2+d^9}
+\end{align*}
+
+The sector of $C_0$ has area
+
+\begin{align*}
+    A & =\frac{1}{2}r_0^2\theta_0 \\
+    A & =\frac{1}{2}\theta_0
+\end{align*}
+
+From the cosine rule we have
+
+\begin{align*}
+    \cos\theta_0 & =\frac{(r_0+r_1)^2+(r_0+r_8)^2-(r_1+r_8)^2}{2(r_0+r_1)(r_0+r_8)} \\
+    \cos\theta_0 & =\frac{(1+d)^2+(1+d^8)^2-(d+d^8)^2}{2(1+d)(1+d^8)}               \\
+    \cos\theta_0 & =\frac{1+2d+d^2+1+2d^8+d^{16}-d^2-2d^9-d^{16}}{2(1+d)(1+d^8)}    \\
+    \cos\theta_0 & =\frac{2+2d+2d^8-2d^9}{2(1+d)(1+d^8)}                            \\
+    \cos\theta_0 & =\frac{1+d+d^8-d^9}{(1+d)(1+d^8)}                                \\
+\end{align*}
+
+% Again for the circles $C_0-C_7-C_8$ the area of the triangle $K_0K_7K_8$ is
+
+% \begin{align*}
+%     E & =d^7\sqrt{d+d^8+d^9}
+% \end{align*}
+
+\end{document}

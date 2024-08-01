@@ -1,11 +1,11 @@
+package problem133;
+
 public class Solution133 {
 
   public static void main(String[] args) {
     // For timing
     long t1 = System.currentTimeMillis();
 
-    // composite numbers found
-    int found = 0;
     // keep track of sum (note that 2+3+5 is initial as they break the rule of modulo 1)
     int sum = 10;
 
@@ -30,10 +30,9 @@ public class Solution133 {
       if (!reduced(k)) {
         // System.out.println(p + " took " + k + " ->> " + (System.currentTimeMillis() - t1) + "ms");
         sum = sum + p;
-        found++;
       }
     }
-
+    
     System.out.println("The solution is: " + sum);
     System.out.println("Took: " + (System.currentTimeMillis() - t1) + "ms");
   }

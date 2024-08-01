@@ -1,3 +1,5 @@
+package problem129;
+
 public class Solution129 {
 
   public static void main(String[] args) {
@@ -8,10 +10,10 @@ public class Solution129 {
     final long N = 1000000l;
 
     // for help functions
-    Numbers n = new Numbers();
+    new Numbers();
 
     // given than a^x=1 mod n it is certain that x<=φ(n)<=n
-    long number = N + (N % 2 == 0 ? 1 : 0);
+    long number = N + (N-1) % 2;
 
     do {
       // for every odd
@@ -24,7 +26,7 @@ public class Solution129 {
       long n9 = number * 9;
 
       // we want > N
-      if (n.totient(n9) <= N) continue;
+      if (Numbers.totient(n9) <= N) continue;
 
       // count k until 10^k = 1 mod 9n
       long k = 0;

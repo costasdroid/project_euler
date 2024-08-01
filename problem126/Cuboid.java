@@ -1,3 +1,5 @@
+package problem126;
+
 public class Cuboid {
 	int[][][] shape;
 	int dimX;

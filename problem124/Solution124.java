@@ -1,3 +1,5 @@
+package problem124;
+
 import java.util.Arrays;
 import java.util.Comparator;
 

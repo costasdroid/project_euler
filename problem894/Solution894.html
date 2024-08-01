@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doyle Spiral with Tangent Circles</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="doyleSpiral" width="800" height="800"></canvas>
+    <script>
+      // Get the canvas element and its context
+      const canvas = document.getElementById("doyleSpiral");
+      const ctx = canvas.getContext("2d");
+
+      // Parameters for the Doyle Spiral
+      const p = 7; // Number of circles after which pattern repeats
+      const q = 8; // Number of circles to consider for tangency
+      const r0 = 50; // Initial radius of the first circle
+      const k = Math.pow(0.9, 1 / 7); // Decreasing factor for the radii to ensure tangency
+      const n = 30; // Total number of circles to draw
+      const theta0 = (2 * Math.PI) / p; // Angle increment per circle
+
+      // Center of the canvas
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      // Function to draw a circle
+      function drawCircle(x, y, radius) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+      }
+
+      // Initial circle parameters
+      let radius = r0;
+      let x = cx;
+      let y = cy;
+
+      // Draw the initial circle at the center
+      drawCircle(x, y, radius);
+
+      // Previous circle's center position and radius
+      let prevX = x;
+      let prevY = y;
+      let prevRadius = radius;
+
+      // Draw the Doyle Spiral
+      for (let i = 1; i < n; i++) {
+        // Calculate the new radius
+        let newRadius = radius * k;
+        // Calculate the distance between the centers of the current and previous circles
+        let distance = radius + newRadius;
+
+        // Calculate the angle for this circle
+        let angle = i * theta0;
+
+        // Update the center position based on the previous circle and tangency
+        let newX = prevX + distance * Math.cos(angle);
+        let newY = prevY + distance * Math.sin(angle);
+
+        // Draw the next circle
+        drawCircle(newX, newY, newRadius);
+
+        // Update the parameters for the next iteration
+        prevX = newX;
+        prevY = newY;
+        radius = newRadius;
+      }
+    </script>
+  </body>
+</html>

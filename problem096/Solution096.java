@@ -12,7 +12,7 @@ public class Solution096 {
 			for (int j = 0; j < 9; j++) {
 				temp[j] = input[10 * i + j + 1];
 			}
-			Sudoku sud = new Sudoku(input[10 * i], temp);
+			new Sudoku(input[10 * i], temp);
 		}
 		System.out.println(Sudoku.sum);
 	}

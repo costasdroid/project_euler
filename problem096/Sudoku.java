@@ -83,14 +83,14 @@ public class Sudoku {
 		}
 	}
 
-	private void printTable(int[][] t) {
-		for (int[] n : t) {
-			for (int i : n) {
-				System.out.print(i + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
+	// private void printTable(int[][] t) {
+	// 	for (int[] n : t) {
+	// 		for (int i : n) {
+	// 			System.out.print(i + " ");
+	// 		}
+	// 		System.out.println();
+	// 	}
+	// 	System.out.println();
+	// }
 
 }

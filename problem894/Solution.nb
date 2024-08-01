@@ -1,0 +1,26 @@
+num = 1005;
+ratio = 0.906331406148595;
+theta = 0.825;
+radius = 0.404205361199771;
+d = 1;
+c[0] = d;
+c[k_] := d*ratio^k*E^(I*k*theta);
+r[k_] := radius*ratio^k
+Graphics[Table[Circle[ReIm[c[i]], r[i]], {i, 0, 50}]]
+r1 = r[i];
+r2 = r[i + 7];
+r3 = r[i + 8];
+r4 = r[i + 1];
+h = (a1 + a2 + a3)/2; NumberForm[
+ Total[Table[
+    Sqrt[r1*r2*
+       r3*(r1 + r2 + r3)] - (r1^2*
+         ArcCos[1 - (2 r2*r3)/((r1 + r2) (r1 + r3))] + 
+        r2^2*ArcCos[1 - (2 r1*r3)/((r2 + r1) (r2 + r3))] + 
+        r3^2*ArcCos[1 - (2 r1*r2)/((r3 + r1) (r3 + r2))])/2 + 
+     Sqrt[r1*r4*
+       r3*(r1 + r4 + r3)] - (r1^2*
+         ArcCos[1 - (2 r4*r3)/((r1 + r4) (r1 + r3))] + 
+        r4^2*ArcCos[1 - (2 r1*r3)/((r4 + r1) (r4 + r3))] + 
+        r3^2*ArcCos[1 - (2 r1*r4)/((r3 + r1) (r3 + r4))])/2, {i, 0, 
+     num}]]/radius^2, 10]

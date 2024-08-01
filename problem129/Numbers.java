@@ -1,3 +1,5 @@
+package problem129;
+
 public class Numbers {
 
 //test for primality

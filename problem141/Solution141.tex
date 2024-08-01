@@ -1,0 +1,53 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{listings,xcolor}
+
+\begin{document}
+First of all, the ratio shouldn't be one! Let $k$ be the ratio.
+
+Let $r$, $p$ and $q$ be the consecutive integers of geometric progression.
+
+The permutations of $(r,d,q)$ are the following:
+\begin{enumerate}
+    \item $(r,d,q)$
+    \item $(r,q,d)$
+    \item $(d,r,q)$
+    \item $(d,q,r)$
+    \item $(q,d,r)$
+    \item $(q,r,d)$
+\end{enumerate}
+
+1 with 5 are the same regarding $k<1$ or $k>1$. The same for 2 with 4 and 3 with 6. We are left with
+\begin{enumerate}
+    \item $(r,d,q)$
+    \item $(r,q,d)$
+    \item $(d,r,q)$
+\end{enumerate}
+
+The first 2 are the same if the $q$ and $d$ are unknown. So we are left with
+\begin{enumerate}
+    \item $(r,d,q)$
+    \item $(d,r,q)$
+\end{enumerate}
+
+\part*{case $(r,d,q)$}
+
+$k$ is rational, so let $$k=\frac{a}{b}$$
+
+So it will be $r$, $d=kr$ and $q=k^2r$ or $r$, $d=\frac{a}{b}r$, $q=\frac{a^2}{b^2}r$. They are all integers, so $b^2|r$. This means that $r=cb^2$, $d=abc$ and $q=a^2b$ for some integers $a$, $b$ and $c$.
+
+So $$m^2=a^3b^2c+cb^2$$ or
+$$k^3x^2+x-m^2=0$$
+$$(kx)^4+kx-km^2=0$$
+$$(ax)^4+b^3ax-ab^3m^2=0$$
+
+Let $q$, $p$ and $r$ be consecutive integers of geometric progression (in that order). Then $q=x$, $p=kx$ and $r=k^2x$ for some $x$ and $k$.
+
+So $m^2=kx^2+k^2x=kx(k+x)$
+
+$$m^2=\frac{ax(a+bx)}{b^2}$$
+
+
+\end{document}

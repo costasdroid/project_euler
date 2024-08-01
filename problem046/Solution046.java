@@ -15,7 +15,7 @@ public class Solution046 {
 			if (isPrime(i)) {
 				for (int j = 1; j * j <= (MAX - i) / 2; j++) {
 					if (numbers.contains(i + 2 * j * j)) {
-						numbers.remove(new Integer(i + 2 * j * j));
+						numbers.remove(Integer.valueOf(i + 2 * j * j));
 					}
 				}
 			}

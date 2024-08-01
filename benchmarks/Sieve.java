@@ -1,3 +1,5 @@
+package benchmarks;
+
 public class Sieve {
 
   public static void main(String[] args) {
@@ -18,16 +20,17 @@ public class Sieve {
     boolean[] comp = new boolean[n];
     int last = (int) n / 2;
     for (int i = 2; i < last + 1; i++) {
-      if (comp[i]) continue;
+      if (comp[i])
+        continue;
       for (int j = 2 * i; j < n; j += i) {
         comp[j] = true;
       }
     }
 
-
-    if (n== 100) {
-      for (int i = 0; i <n; i++)
-      if (!comp[i]) System.out.println(i);
+    if (n == 100) {
+      for (int i = 0; i < n; i++)
+        if (!comp[i])
+          System.out.println(i);
     }
 
     return;

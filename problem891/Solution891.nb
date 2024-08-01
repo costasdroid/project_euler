@@ -1,0 +1,39 @@
+k = 12*3600; (*Max time of 12 hours*)
+v1 = 2 Pi/60; (*velocities of sec, min, hours*)
+s[t_] := E^(v1*I*t) (*Position of sec, min, hours as complex numbers*)
+v2 = 2 Pi/(60*60);
+m[t_] := E^(v2*I*t)
+v3 = 2 Pi/(60*60*12);
+h[t_] := E^(v3*I*t)
+sh[t_] := s[t]/h[t] (*Relative position between s-m, m-h...*)
+mh[t_] := m[t]/h[t]
+sm[t_] := s[t]/m[t]
+hm[t_] := h[t]/m[t]
+ms[t_] := m[t]/s[t]
+hs[t_] := h[t]/s[t]
+t1 =.; t2 =.;
+sol[1] = 
+  Solve[{sh[t1] == sh[t2], ms[t1] == ms[t2], t1 >= 0, t2 > t1, 
+    t2 < k}];
+sol[2] = 
+  Solve[{sh[t1] == sm[t2], ms[t1] == hs[t2], t1 >= 0, t2 > t1, 
+    t2 < k}];
+sol[3] = 
+  Solve[{sh[t1] == mh[t2], ms[t1] == sm[t2], t1 >= 0, t2 > t1, 
+    t2 < k}];
+sol[4] = 
+  Solve[{sh[t1] == ms[t2], ms[t1] == hm[t2], t1 >= 0, t2 > t1, 
+    t2 < k}];
+sol[5] = 
+  Solve[{sh[t1] == hm[t2], ms[t1] == sh[t2], t1 >= 0, t2 > t1, 
+    t2 < k}];
+sol[6] = 
+  Solve[{sh[t1] == hs[t2], ms[t1] == mh[t2], t1 >= 0, t2 > t1, 
+    t2 < k}];
+list = {};
+AppendTo[list, {t1, t2} /. sol[2]];
+AppendTo[list, {t1, t2} /. sol[3]];
+AppendTo[list, {t1, t2} /. sol[4]];
+AppendTo[list, {t1, t2} /. sol[5]];
+AppendTo[list, {t1, t2} /. sol[6]];
+CountDistinct[Flatten[list]]

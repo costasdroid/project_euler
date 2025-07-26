@@ -1,0 +1,7 @@
+Select[Range[1, 150 10^6], 
+  PrimeQ[#^2 + 1] && PrimeQ[#^2 + 3] && ! PrimeQ[#^2 + 5] && 
+    PrimeQ[#^2 + 7] && PrimeQ[#^2 + 9] && ! PrimeQ[#^2 + 11] && 
+    PrimeQ[#^2 + 13] && ! PrimeQ[#^2 + 15] && ! PrimeQ[#^2 + 17] && ! 
+     PrimeQ[#^2 + 19] && ! PrimeQ[#^2 + 21] && ! 
+     PrimeQ[#^2 + 23] && ! PrimeQ[#^2 + 25] && 
+    PrimeQ[#^2 + 27] &] // Total
